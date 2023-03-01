@@ -2,6 +2,7 @@ from django.db import models
 
 # Create your models here.
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 class Aluno(models.Model):
     nome = models.CharField(max_length= 30)
@@ -28,5 +29,7 @@ class Curso(models.Model):
 
     def __str__(self) :
         return self.descricao
+=======
+>>>>>>> parent of efc6418 (criando tabelas Curso e Aluno)
 =======
 >>>>>>> parent of efc6418 (criando tabelas Curso e Aluno)
