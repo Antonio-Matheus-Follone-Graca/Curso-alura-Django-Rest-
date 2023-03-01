@@ -1,4 +1,4 @@
-from django.shortcuts import JsonResponse 
+from django.http import JsonResponse 
 
 # Create your views here.
 
