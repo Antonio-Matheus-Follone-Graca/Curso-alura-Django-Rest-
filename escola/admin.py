@@ -2,9 +2,10 @@ from django.contrib import admin
 
 # Register your models here.
 
-from escola.models import Aluno,Curso
+from escola.models import Aluno,Curso, Matricula
 # Register your models here.
 
+# mudanças envolvendo Alunos
 class Alunos(admin.ModelAdmin):
     # campos que quero exibir no admin da tabela aluno
     list_display = ('id','nome','rg','cpf','data_nascimento')
@@ -28,4 +29,14 @@ class Cursos(admin.ModelAdmin):
 
 # registrando mudanças no admin
 admin.site.register(Curso, Cursos)
+
+# registrando mudanças no admin envolvendo Matricula
+class Matriculas(admin.ModelAdmin):
+    list_display = ('id', 'curso', 'periodo')
+    list_display_links = ('id',)
+
+# registrando mudanças no admin
+admin.site.register(Matricula, Matriculas)
+
+
 

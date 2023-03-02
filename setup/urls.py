@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.urls import path, include
 # importando views
-from escola. views import AlunosViewSet, CursosViewSet
+from escola. views import AlunosViewSet, CursosViewSet, MatriculaViewSet
 # importando rotas do rest framework
 from rest_framework import routers
 
@@ -12,6 +12,11 @@ router.register('aluno', AlunosViewSet, basename='Alunos')
 
 # cadastrando rota de cursos
 router.register('cursos', CursosViewSet, basename='Cursos')
+
+
+# cadastrando rota de matricula
+router.register('matriculas', MatriculaViewSet, basename='Matriculas')
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
