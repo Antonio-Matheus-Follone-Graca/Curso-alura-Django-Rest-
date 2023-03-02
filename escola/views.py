@@ -4,6 +4,11 @@ from escola.models import Aluno,Curso, Matricula
 # importando arquivo de serializer
 from escola.serializer import AlunoSerializer,CursoSerializer, MatriculaSerializer, ListandoMatriculasporAlunoSerializer, ListaAlunoMatriculadosSerializer
 
+# importando autentição do rest framework
+from rest_framework.authentication import BasicAuthentication
+
+from rest_framework.permissions import IsAuthenticated
+
 # classe do rest framewerork, nome ViewSet é obrigatório 
 class AlunosViewSet(viewsets.ModelViewSet):
     '''
@@ -13,6 +18,9 @@ class AlunosViewSet(viewsets.ModelViewSet):
     queryset = Aluno.objects.all()
     # classe de serializer
     serializer_class = AlunoSerializer
+    # autentição 
+    authentication_classes = [BasicAuthentication]
+    permission_classes = [IsAuthenticated]
 
 
 class CursosViewSet(viewsets.ModelViewSet):
@@ -23,6 +31,9 @@ class CursosViewSet(viewsets.ModelViewSet):
     queryset = Curso.objects.all()
     # classe de serializer
     serializer_class = CursoSerializer
+    # autentição 
+    authentication_classes = [BasicAuthentication]
+    permission_classes = [IsAuthenticated]
 
 
 class MatriculaViewSet(viewsets.ModelViewSet):
@@ -32,6 +43,9 @@ class MatriculaViewSet(viewsets.ModelViewSet):
     queryset = Matricula.objects.all()
     # classe de serializer
     serializer_class = MatriculaSerializer
+    # autentição 
+    authentication_classes = [BasicAuthentication]
+    permission_classes = [IsAuthenticated]
 
 class ListaMatriculasAluno(generics.ListAPIView):
     # generics possui funções mais faceis para mapear o banco de dados 
@@ -46,6 +60,9 @@ class ListaMatriculasAluno(generics.ListAPIView):
         return queryset
         #  classe de serializer
     serializer_class = ListandoMatriculasporAlunoSerializer
+    # autentição 
+    authentication_classes = [BasicAuthentication]
+    permission_classes = [IsAuthenticated]
 
 class ListaAlunosMatriculados(generics.ListAPIView):
     '''
@@ -58,6 +75,9 @@ class ListaAlunosMatriculados(generics.ListAPIView):
 
     # classe de serializer
     serializer_class = ListaAlunoMatriculadosSerializer
+    # autentição 
+    authentication_classes = [BasicAuthentication]
+    permission_classes = [IsAuthenticated]
     
        
         
