@@ -44,3 +44,11 @@ class ListandoMatriculasporAlunoSerializer(serializers.ModelSerializer):
         '''
         return objeto.get_periodo_display() 
 
+class ListaAlunoMatriculadosSerializer(serializers.ModelSerializer):
+    # configurando campo aluno para mostrar o nome do aluno e não o id, source = tabela.campo da tabela
+    aluno_nome = serializers.ReadOnlyField(source ='aluno.nome')
+    # informando qual classe de model a classe  ListaAlunoMatriculadoEmUmCurso irá utilizar e seus respectivos campos
+    class Meta:
+        model = Matricula
+        fields = ['aluno_nome']
+

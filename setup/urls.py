@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.urls import path, include
 # importando views
-from escola. views import AlunosViewSet, CursosViewSet, MatriculaViewSet, ListaMatriculasAluno
+from escola. views import AlunosViewSet, CursosViewSet, MatriculaViewSet, ListaMatriculasAluno, ListaAlunosMatriculados
 # importando rotas do rest framework
 from rest_framework import routers
 
@@ -24,7 +24,9 @@ urlpatterns = [
     # nesse caso na index do projeto mostrará todas as rotas cadastradas do rest framework 
     path('',include(router.urls)),
     # rota que usa  generics. O as_view() é para informar que é uma view(não sei pq mas só roda assim) 
-    path('aluno/<int:pk>/matriculas/',ListaMatriculasAluno.as_view())
+    path('aluno/<int:pk>/matriculas/',ListaMatriculasAluno.as_view()),
+    # outra rota que o serializer usa generics
+    path('curso/<int:pk>/matriculas/',ListaAlunosMatriculados.as_view())
 
 ]
 
