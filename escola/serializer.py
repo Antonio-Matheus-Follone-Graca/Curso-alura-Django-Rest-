@@ -6,14 +6,14 @@ from rest_framework import serializers
 from escola.models import Aluno,Curso
 
 class AlunoSerializer(serializers.ModelSerializer):
-    # informando qual classe a classe  AlunoSerializer irá utilizar e seus respectivos campos
+    # informando qual classe de model a classe  AlunoSerializer irá utilizar e seus respectivos campos
     class Meta:
         model = Aluno
         fields = ['id','nome','rg','cpf']
 
 
 class CursoSerializer(serializers.ModelSerializer):
-    # informando qual classe a classe  AlunoSerializer irá utilizar e seus respectivos campos
+    # informando qual classe  de model a classe  AlunoSerializer irá utilizar e seus respectivos campos
     class Meta:
         model = Curso
         # todos os campos

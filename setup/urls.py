@@ -1,27 +1,22 @@
-"""setup URL Configuration
-
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/4.1/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-"""
 from django.contrib import admin
-from django.urls import path
-from escola import views
+from django.urls import path, include
+# importando views
+from escola. views import AlunosViewSet, CursosViewSet
+# importando rotas do rest framework
+from rest_framework import routers
 
+# configurando rotas do rest framework
+router = routers.DefaultRouter()
+# registrando rotas,sintaxe: prefixo(url), classe viewset e basename (nome / apelido da rota), basename é  (opcional)
+router.register('aluno', AlunosViewSet, basename='Alunos')
+
+# cadastrando rota de cursos
+router.register('cursos', CursosViewSet, basename='Cursos')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    # importando o arquivo de urls do app escola
-    path('alunos/',views.alunos, name= 'alunos' ),
+    # colocando as rotas do rest framework nas rotas do djnago
+    path('',include(router.urls)) # nesse caso na index do projeto mostrará todas as rotas cadastradas do rest framework 
 ]
 
 
