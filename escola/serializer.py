@@ -24,3 +24,23 @@ class MatriculaSerializer(serializers.ModelSerializer):
     class Meta:
         model = Matricula
         exclude = []# pega todos os campos o exclude vazio
+
+# listando matriculas por aluno 
+
+class ListandoMatriculasporAlunoSerializer(serializers.ModelSerializer):
+    # informando que o campo curso será apenas do tipo leitura e será representado pelo seu campo descrição
+    # pois caso contrário será representado pelo seu id
+    curso = serializers.ReadOnlyField(source = 'curso.descricao')
+    periodo = serializers.SerializerMethodField()
+    # definindo qual model o serializer irá utilizar
+    class Meta:
+        model = Matricula
+        fields = ['curso','periodo']
+    
+    # ao usar a função SerializerMethodField DEVE-SE criar um metodo com get_variavel que guarda o SerializerMethodField
+    def get_periodo(self, objeto):
+        '''
+            funcao que pega o nome do periodo e não a sigla
+        '''
+        return objeto.get_periodo_display() 
+

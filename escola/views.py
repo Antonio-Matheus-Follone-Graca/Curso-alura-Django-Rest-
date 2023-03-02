@@ -1,8 +1,8 @@
-from rest_framework import viewsets
+from rest_framework import viewsets, generics
 # importando models 
 from escola.models import Aluno,Curso, Matricula
 # importando arquivo de serializer
-from escola.serializer import AlunoSerializer,CursoSerializer, MatriculaSerializer
+from escola.serializer import AlunoSerializer,CursoSerializer, MatriculaSerializer, ListandoMatriculasporAlunoSerializer
 
 # classe do rest framewerork, nome ViewSet é obrigatório 
 class AlunosViewSet(viewsets.ModelViewSet):
@@ -33,6 +33,20 @@ class MatriculaViewSet(viewsets.ModelViewSet):
     # classe de serializer
     serializer_class = MatriculaSerializer
 
+class ListaMatriculasAluno(generics.ListAPIView):
+    # generics possui funções mais faceis para mapear o banco de dados 
+    '''
+        listando matriculas de um aluno(a)
+    '''
+    # em generics deve-se usar um método query set na forma abaixo 
+    def get_queryset(self):
+        # pegando todas as matriculas por aluno
+        # pk = id e o este nome, deve ser igual ao da urls.py de setup
+        queryset = Matricula.objects.filter(aluno_id = self.kwargs['pk'])
+        return queryset
+        #  classe de serializer
+    serializer_class = ListandoMatriculasporAlunoSerializer
+        
 
 
    
