@@ -2,7 +2,7 @@ from rest_framework import viewsets, generics
 # importando models 
 from escola.models import Aluno,Curso, Matricula
 # importando arquivo de serializer
-from escola.serializer import AlunoSerializer,CursoSerializer, MatriculaSerializer, ListandoMatriculasporAlunoSerializer, ListaAlunoMatriculadosSerializer
+from escola.serializer import AlunoSerializer,AlunoSerializerV2,CursoSerializer, MatriculaSerializer, ListandoMatriculasporAlunoSerializer, ListaAlunoMatriculadosSerializer
 
 # importando autentição do rest framework
 from rest_framework.authentication import BasicAuthentication
@@ -16,11 +16,20 @@ class AlunosViewSet(viewsets.ModelViewSet):
     '''
     # pegando todos os alunos do banco de dados 
     queryset = Aluno.objects.all()
-    # classe de serializer
-    serializer_class = AlunoSerializer
     # autentição 
     authentication_classes = [BasicAuthentication]
     permission_classes = [IsAuthenticated]
+    # função que define qual serializer e versão irei usar
+    def get_serializer_class(self):
+        if self.request.version == 'v2':
+            # utiliza o serializer versão 2
+            return AlunoSerializerV2
+        
+        # senão usa a versão 1
+        else:
+            return AlunoSerializer
+            
+        
 
 
 class CursosViewSet(viewsets.ModelViewSet):
