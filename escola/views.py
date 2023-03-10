@@ -18,9 +18,6 @@ class AlunosViewSet(viewsets.ModelViewSet):
     '''
     # pegando todos os alunos do banco de dados 
     queryset = Aluno.objects.all()
-    # autentição 
-    
-  
     # função que define qual serializer e versão irei usar
     def get_serializer_class(self):
         if self.request.version == 'v2':
@@ -30,9 +27,7 @@ class AlunosViewSet(viewsets.ModelViewSet):
         # senão usa a versão 1
         else:
             return AlunoSerializer
-            
         
-
 class CursosViewSet(viewsets.ModelViewSet):
     '''
         exibindo todos os cursos
@@ -41,11 +36,8 @@ class CursosViewSet(viewsets.ModelViewSet):
     queryset = Curso.objects.all()
     # classe de serializer
     serializer_class = CursoSerializer
-    # autentição 
+    # informando quais métodos matriculas serão usados.Senão informar todos serão utilizados.
    
-  
-
-
 class MatriculaViewSet(viewsets.ModelViewSet):
     '''
         exibindo todas as matriculas
@@ -53,10 +45,9 @@ class MatriculaViewSet(viewsets.ModelViewSet):
     queryset = Matricula.objects.all()
     # classe de serializer
     serializer_class = MatriculaSerializer
-    # autentição 
+    # Até o administrador da api não pode  quebrar uma regra de qual método http será usado
+    http_method_names=['get','post','put','path']
   
-   
-
 class ListaMatriculasAluno(generics.ListAPIView):
     # generics possui funções mais faceis para mapear o banco de dados 
     '''
@@ -70,10 +61,7 @@ class ListaMatriculasAluno(generics.ListAPIView):
         return queryset
         #  classe de serializer
     serializer_class = ListandoMatriculasporAlunoSerializer
-    # autentição 
    
-  
-
 class ListaAlunosMatriculados(generics.ListAPIView):
     '''
         Listando alunos e alunas matriculados em um curso
@@ -85,7 +73,6 @@ class ListaAlunosMatriculados(generics.ListAPIView):
 
     # classe de serializer
     serializer_class = ListaAlunoMatriculadosSerializer
-    # autentição 
     
     
     
