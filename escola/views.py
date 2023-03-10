@@ -5,9 +5,9 @@ from escola.models import Aluno,Curso, Matricula
 from escola.serializer import AlunoSerializer,AlunoSerializerV2,CursoSerializer, MatriculaSerializer, ListandoMatriculasporAlunoSerializer, ListaAlunoMatriculadosSerializer
 
 # importando autentição do rest framework
-from rest_framework.authentication import BasicAuthentication
+#from rest_framework.authentication import BasicAuthentication
 
-from rest_framework.permissions import IsAuthenticated,DjangoModelPermissions
+#from rest_framework.permissions import IsAuthenticated,DjangoModelPermissions
 
 # DjangoModelPermissions permissões de usuários
 
@@ -19,8 +19,8 @@ class AlunosViewSet(viewsets.ModelViewSet):
     # pegando todos os alunos do banco de dados 
     queryset = Aluno.objects.all()
     # autentição 
-    authentication_classes = [BasicAuthentication]
-    permission_classes = [IsAuthenticated, DjangoModelPermissions]
+    
+  
     # função que define qual serializer e versão irei usar
     def get_serializer_class(self):
         if self.request.version == 'v2':
@@ -33,7 +33,6 @@ class AlunosViewSet(viewsets.ModelViewSet):
             
         
 
-
 class CursosViewSet(viewsets.ModelViewSet):
     '''
         exibindo todos os cursos
@@ -43,8 +42,8 @@ class CursosViewSet(viewsets.ModelViewSet):
     # classe de serializer
     serializer_class = CursoSerializer
     # autentição 
-    authentication_classes = [BasicAuthentication]
-    permission_classes = [IsAuthenticated, DjangoModelPermissions]
+   
+  
 
 
 class MatriculaViewSet(viewsets.ModelViewSet):
@@ -55,8 +54,8 @@ class MatriculaViewSet(viewsets.ModelViewSet):
     # classe de serializer
     serializer_class = MatriculaSerializer
     # autentição 
-    authentication_classes = [BasicAuthentication]
-    permission_classes = [IsAuthenticated, DjangoModelPermissions]
+  
+   
 
 class ListaMatriculasAluno(generics.ListAPIView):
     # generics possui funções mais faceis para mapear o banco de dados 
@@ -72,8 +71,8 @@ class ListaMatriculasAluno(generics.ListAPIView):
         #  classe de serializer
     serializer_class = ListandoMatriculasporAlunoSerializer
     # autentição 
-    authentication_classes = [BasicAuthentication]
-    permission_classes = [IsAuthenticated, DjangoModelPermissions]
+   
+  
 
 class ListaAlunosMatriculados(generics.ListAPIView):
     '''
@@ -87,8 +86,8 @@ class ListaAlunosMatriculados(generics.ListAPIView):
     # classe de serializer
     serializer_class = ListaAlunoMatriculadosSerializer
     # autentição 
-    authentication_classes = [BasicAuthentication]
-    permission_classes = [IsAuthenticated, DjangoModelPermissions]
+    
+    
     
        
         

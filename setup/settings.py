@@ -127,7 +127,16 @@ STATIC_URL = 'static/'
 
 # usando o tipo de versionamento QueryParameterVersioning
 REST_FRAMEWORK = {
-     'DEFAULT_VERSIONING_CLASS': 'rest_framework.versioning.QueryParameterVersioning'
+     'DEFAULT_VERSIONING_CLASS': 'rest_framework.versioning.QueryParameterVersioning',
+     # adicionando permissões padrões ao rest framework
+     'DEFAULT_PERMISSION_CLASSES':[
+        'rest_framework.permissions.IsAuthenticated',
+        'rest_framework.permissions.DjangoModelPermissions'
+     ],
+     # adicionando autenticação padrão ao rest framework
+     'DEFAULT_AUTHENTICATION_CLASSES':[
+        'rest_framework.authentication.BasicAuthentication'
+     ]
 }
 
 # Default primary key field type

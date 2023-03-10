@@ -24,9 +24,9 @@ urlpatterns = [
     # nesse caso na index do projeto mostrará todas as rotas cadastradas do rest framework 
     path('',include(router.urls)),
     # rota que usa  generics. O as_view() é para informar que é uma view(não sei pq mas só roda assim) 
-    path('aluno/<int:pk>/matriculas/',ListaMatriculasAluno.as_view()),
+    path('alunos/<int:pk>/matriculas/',ListaMatriculasAluno.as_view()),
     # outra rota que o serializer usa generics
-    path('curso/<int:pk>/matriculas/',ListaAlunosMatriculados.as_view())
+    path('cursos/<int:pk>/matriculas/',ListaAlunosMatriculados.as_view())
 
 ]
 
