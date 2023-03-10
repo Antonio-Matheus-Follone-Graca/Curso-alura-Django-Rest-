@@ -7,8 +7,9 @@ from escola.serializer import AlunoSerializer,AlunoSerializerV2,CursoSerializer,
 # importando autentição do rest framework
 from rest_framework.authentication import BasicAuthentication
 
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated,DjangoModelPermissions
 
+# DjangoModelPermissions permissões de usuários
 
 # classe do rest framewerork, nome ViewSet é obrigatório 
 class AlunosViewSet(viewsets.ModelViewSet):
