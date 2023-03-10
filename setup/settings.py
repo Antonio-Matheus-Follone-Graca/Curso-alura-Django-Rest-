@@ -136,7 +136,16 @@ REST_FRAMEWORK = {
      # adicionando autenticação padrão ao rest framework
      'DEFAULT_AUTHENTICATION_CLASSES':[
         'rest_framework.authentication.BasicAuthentication'
-     ]
+     ],
+     # limitação de números de requisições da api por tipo de usuário
+    'DEFAULT_THROTTLE_CLASSES': [
+        'rest_framework.throttling.AnonRateThrottle',
+        'rest_framework.throttling.UserRateThrottle'
+    ],
+    'DEFAULT_THROTTLE_RATES': {
+        'anon': '5/day',
+        'user': '100/day'
+    }
 }
 
 # Default primary key field type
