@@ -4,6 +4,9 @@ from escola.models import Aluno,Curso, Matricula
 # importando arquivo de serializer
 from escola.serializer import AlunoSerializer,AlunoSerializerV2,CursoSerializer, MatriculaSerializer, ListandoMatriculasporAlunoSerializer, ListaAlunoMatriculadosSerializer
 
+from rest_framework.response import Response
+from rest_framework import status
+
 # importando autentição do rest framework
 #from rest_framework.authentication import BasicAuthentication
 
@@ -36,7 +39,19 @@ class CursosViewSet(viewsets.ModelViewSet):
     queryset = Curso.objects.all()
     # classe de serializer
     serializer_class = CursoSerializer
-    # informando quais métodos matriculas serão usados.Senão informar todos serão utilizados.
+    # usando response
+    def create(self, request):
+        # pegando todos os dados da requisição
+        serializer = self.serializer_class(data= request.data)
+        if serializer.is_valid():
+            # salvando o serializer
+            serializer.save()
+            response = Response(serializer.data, status = status.HTTP_201_CREATED)
+            id = str(serializer.data['id'] )
+            # criando response location
+            response['Location'] = request.build_absolute_uri() + id # endereço da url com o id junto
+            return response
+
    
 class MatriculaViewSet(viewsets.ModelViewSet):
     '''
