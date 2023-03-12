@@ -49,6 +49,8 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    "corsheaders.middleware.CorsMiddleware",
+    "django.middleware.common.CommonMiddleware",
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -130,22 +132,22 @@ STATIC_URL = 'static/'
 REST_FRAMEWORK = {
      'DEFAULT_VERSIONING_CLASS': 'rest_framework.versioning.QueryParameterVersioning',
      # adicionando permissões padrões ao rest framework
-     'DEFAULT_PERMISSION_CLASSES':[
-        'rest_framework.permissions.IsAuthenticated',
-        'rest_framework.permissions.DjangoModelPermissions'
-     ],
+    # 'DEFAULT_PERMISSION_CLASSES':[
+      #  'rest_framework.permissions.IsAuthenticated',
+      #  'rest_framework.permissions.DjangoModelPermissions'
+     #], 
      # adicionando autenticação padrão ao rest framework
-     'DEFAULT_AUTHENTICATION_CLASSES':[
-        'rest_framework.authentication.BasicAuthentication'
-     ],
+     # 'DEFAULT_AUTHENTICATION_CLASSES':[
+      #  'rest_framework.authentication.BasicAuthentication'
+     #], 
      # limitação de números de requisições da api por tipo de usuário
     'DEFAULT_THROTTLE_CLASSES': [
         'rest_framework.throttling.AnonRateThrottle',
-        'rest_framework.throttling.UserRateThrottle'
+       # 'rest_framework.throttling.UserRateThrottle'
     ],
     'DEFAULT_THROTTLE_RATES': {
-        'anon': '5/day',
-        'user': '100/day'
+        'anon': '100/day',
+        #'user': '100/day'
     }
 }
 
@@ -153,3 +155,9 @@ REST_FRAMEWORK = {
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# configurando permissão para uso da api em uma aplicação front end, usando cors headers
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+]
