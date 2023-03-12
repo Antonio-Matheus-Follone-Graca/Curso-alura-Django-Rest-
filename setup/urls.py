@@ -1,6 +1,8 @@
 from django.contrib import admin
 from django.urls import path, include
 # importando views
+from django.conf import settings
+from django.conf.urls.static import static
 from escola. views import AlunosViewSet, CursosViewSet, MatriculaViewSet, ListaMatriculasAluno, ListaAlunosMatriculados
 # importando rotas do rest framework
 from rest_framework import routers
@@ -28,6 +30,6 @@ urlpatterns = [
     # outra rota que o serializer usa generics
     path('cursos/<int:pk>/matriculas/',ListaAlunosMatriculados.as_view())
 
-]
+]+ static (settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
 
 
