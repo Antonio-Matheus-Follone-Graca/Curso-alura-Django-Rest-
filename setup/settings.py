@@ -126,6 +126,10 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+# habilitando caminho para imagem 
+MEDIA_ROOT = os.path.join(BASE_DIR,'media_root')
+MEDIA_URL = '/media/'
+
 # usando versionamento
 
 # usando o tipo de versionamento QueryParameterVersioning
