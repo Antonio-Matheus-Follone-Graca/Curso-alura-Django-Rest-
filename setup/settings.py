@@ -182,4 +182,10 @@ CORS_ALLOWED_ORIGINS = [
 SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
 SESSION_CACHE_ALIAS = 'default' """
 
+# personalizando mensagens padrões
+LOCALE_PATHS = (
+    # indicando a pasta locale
+    os.path.join(BASE_DIR, 'locale/')
+)
+
 
