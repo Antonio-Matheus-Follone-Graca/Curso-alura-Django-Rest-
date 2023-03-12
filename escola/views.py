@@ -7,6 +7,9 @@ from escola.serializer import AlunoSerializer,AlunoSerializerV2,CursoSerializer,
 from rest_framework.response import Response
 from rest_framework import status
 
+# usando cache
+from django.utils.decorators import method_decorator
+from django.views.decorators.cache import cache_page
 # importando autentição do rest framework
 #from rest_framework.authentication import BasicAuthentication
 
@@ -62,6 +65,11 @@ class MatriculaViewSet(viewsets.ModelViewSet):
     serializer_class = MatriculaSerializer
     # Até o administrador da api não pode  quebrar uma regra de qual método http será usado
     http_method_names=['get','post','put','path']
+     #usando cache
+    # mostrando cache durante 20 segundos
+    @method_decorator(cache_page(20))
+    def dispatch(self,*args,**kwargs):
+        return super(MatriculaViewSet,self).dispatch(*args,**kwargs)
   
 class ListaMatriculasAluno(generics.ListAPIView):
     # generics possui funções mais faceis para mapear o banco de dados 
