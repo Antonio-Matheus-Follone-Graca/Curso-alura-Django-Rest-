@@ -43,6 +43,8 @@ class CursosViewSet(viewsets.ModelViewSet):
     # classe de serializer
     serializer_class = CursoSerializer
     # usando response
+    # métodos http permitidos nessa requisição
+    http_method_names=['get','post','put','path']
     def create(self, request):
         # pegando todos os dados da requisição
         serializer = self.serializer_class(data= request.data)
