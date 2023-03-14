@@ -10,6 +10,7 @@ class CursosTestCase(APITestCase):
     # método que inicia os testes.Nome da função esse mesmo
     def setUp(self):
         # mostra todas as listas da url de BaseName Cursos
+        #a função reverse permite recuperar detalhes do URL do arquivo url's.py por meio do valor do nome fornecido lá. Este é o principal uso da função reversa no Django. A variável de redirecionamento é a variável aqui que terá o valor invertido.
         self.list_url = reverse('Cursos-list')
         # criando curso
         self.curso_1= Curso.objects.create(
