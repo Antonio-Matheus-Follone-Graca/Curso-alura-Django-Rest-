@@ -21,10 +21,11 @@ router.register('matriculas', MatriculaViewSet, basename='Matriculas')
 
 
 urlpatterns = [
+    # usando honey spot
+    # tela fake para invasores
     path('admin/', include('admin_honeypot.urls', namespace='admin_honeypot')),
-    path('secret/', include(admin.site.urls)),
+    # admin verdadeiro
     path('controle-geral/', admin.site.urls),
-    path('admin/', admin.site.urls),
     # colocando as rotas do rest framework nas rotas do djnago
     # nesse caso na index do projeto mostrará todas as rotas cadastradas do rest framework 
     path('',include(router.urls)),
